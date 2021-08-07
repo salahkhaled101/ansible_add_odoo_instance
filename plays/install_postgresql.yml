@@ -1,0 +1,17 @@
+- name: installing and starting postgres server
+  block:
+  - name: Make sure psycopg2 is installed
+    pip:
+      name: psycopg2
+      state: present
+  
+  - name: Create our postgre user, set MD5-hashed password, grant privs
+    postgresql_user:
+      name: '{{ hostname }}'
+      password: '{{ db_userpass }}'
+      role_attr_flags: CREATEDB
+
+  - name: restart postgresql service
+    systemd:
+      name: postgresql
+      state: restarted

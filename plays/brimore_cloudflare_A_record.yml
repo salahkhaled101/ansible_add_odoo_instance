@@ -1,0 +1,10 @@
+- name: setting DNS A record
+  cloudflare_dns:
+   zone: enter_your_domain_here
+   record: "{{ hostname }}"
+   type: A
+   value: "{{ ansible_default_ipv4.address }}"
+   account_email: "cloudflare_email"
+   account_api_token: "api_token"
+  tags:
+  - cloudflare_dns

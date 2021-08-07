@@ -1,0 +1,21 @@
+- name: Send nginx for odoo url 
+  template:
+          src: templates/new/nginx.conf
+          dest: /etc/nginx/conf.d/{{ hostname }}.conf
+          force: yes
+          mode: '0644'
+ 
+- name: Send odoo conf file
+  template:
+          src: templates/new/odoo_enterprise.conf
+          dest: /etc/odoo/{{ hostname }}.conf
+          force: yes
+          mode: '0644'
+
+- name: Send odoo service file
+  template:
+          src: templates/new/odoo.service
+          dest: /etc/systemd/system/{{ hostname }}.service
+          force: yes
+          mode: '0644'
+
